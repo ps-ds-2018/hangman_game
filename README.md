@@ -59,33 +59,35 @@ This project implements a **web-based Hangman game** that can be played manually
 ---
 
 ## **Project Structure**  
-hangman_game/
-│── hangman/                        # Core game logic
-│   │── __init__.py                 
-│   │── game.py                     # Manual Hangman game
-│   │── logic.py                    # AI guessing logic
-│   │── utils.py                    # Helper functions
-│   │── display.py                  # Hangman display function
-│── static/                         # CSS & images
-│   │── style.css                   # Styling for landing & game pages
-│   │── landingpage_background.jpg  # Background image for home page
-│   │── header_footer_image.jpg     # Image used in header/footer
-│   │── header-image.jpg            # Image used in header
-│   │── footer-image.jpg            # Image used in footer
-│   │── script.js                   # Frontend js script
-│   │── style.css                   # Frontend style guide
-│── templates/                      # HTML files for UI
-│   │── index.html                  # Landing page
-│   │── game.html                   # Game page
-│── tests/                          
-│   │── __init__.py         
-│   │── test_hangman.py             # Automated testing
-│   │── auto_game.py                # Automated game logic
-│── words.txt                       # 100 flight safety-related words
-│── app.py                          # Flask application
-│── requirements.txt                # Required dependencies
-│── README.md                       # Project Documentation (this file)
-│── .gitignore                      # Excludes unnecessary files
+
+hangman_game/  
+│── hangman/                        # Core game logic  
+│   │── __init__.py  
+│   │── game.py                     # Manual Hangman game  
+│   │── logic.py                    # AI guessing logic  
+│   │── utils.py                    # Helper functions  
+│   │── display.py                  # Hangman display function  
+│── static/                         # CSS & images  
+│   │── style.css                   # Styling for landing & game pages  
+│   │── landingpage_background.jpg  # Background image for home page  
+│   │── header_footer_image.jpg     # Image used in header/footer  
+│   │── header-image.jpg            # Image used in header  
+│   │── footer-image.jpg            # Image used in footer  
+│   │── script.js                   # Frontend JavaScript file  
+│   │── style.css                   # Frontend style guide  
+│── templates/                      # HTML files for UI  
+│   │── index.html                  # Landing page  
+│   │── game.html                   # Game page  
+│── tests/                          # Testing framework  
+│   │── __init__.py  
+│   │── test_hangman.py             # Automated testing  
+│   │── auto_game.py                # Automated game logic  
+│── words.txt                       # 100 flight safety-related words  
+│── app.py                          # Flask application  
+│── requirements.txt                # Required dependencies  
+│── README.md                       # Project documentation (this file)  
+│── .gitignore                      # Excludes unnecessary files  
+
 
 ## **Installation & Setup**  
 
