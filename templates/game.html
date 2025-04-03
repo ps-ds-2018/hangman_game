@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Safety Hangman</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="{{ url_for('static', filename='header_footer_image.jpg') }}" class="header-footer-img">
+        Flight Safety Hangman
+    </header>
+
+    <div class="container">
+        <h1>Flight Safety Hangman</h1>
+
+        <p><strong>Word Length:</strong> <span id="wordLength">0</span></p>
+        <p><strong>Word:</strong> <span id="maskedWord">_ _ _ _ _</span></p>
+        <p><strong>Guessed Letters:</strong> <span id="guessedLetters">None</span></p>
+        <p><strong>Remaining Guesses:</strong> <span id="remainingGuesses">6</span></p>
+        <p id="message"></p>
+
+        <!-- Hangman Display -->
+        <pre id="hangmanDrawing"></pre>
+
+        <input type="text" id="guessInput" maxlength="1">
+        <button onclick="makeGuess()">Submit</button>
+        <button onclick="startGame()">Restart Game</button>
+        <a href="{{ url_for('index') }}"><button class="back-home">Back to Home</button></a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <img src="{{ url_for('static', filename='header_footer_image.jpg') }}" class="header-footer-img">
+        Stay Safe. Stay Informed.
+    </footer>
+
+    <script>
+        let word = "";
+        let maskedWord = "";
+        let guessedLetters = [];
+        let remainingGuesses = 6;
+        const hangmanStages = [
+            "",
+            "___\n  |  \n  O  ",
+            "___\n  |  \n  O  \n  |  \n  |  \n  |  ",
+            "___\n  |  \n  O  \n /|  \n  |  \n  |  ",
+            "___\n  |  \n  O  \n /|\\ \n  |  \n  |  ",
+            "___\n  |  \n  O  \n /|\\ \n  |  \n /|  ",
+            "___\n  |  \n  O  \n /|\\ \n  |  \n /|\\ \nOops, you lost!"
+        ];
+
+        function startGame() {
+            fetch("/start-game", { method: "POST" })
+            .then(response => response.json())
+            .then(data => {
+                word = data.word;
+                maskedWord = "_ ".repeat(word.length).trim();
+                guessedLetters = data.guessedLetters;
+                remainingGuesses = 6;
+                document.getElementById("wordLength").innerText = word.length;
+                document.getElementById("message").innerText = "Game started! Make a guess.";
+                updateDisplay();
+            });
+        }
+
+        function makeGuess() {
+            let inputField = document.getElementById("guessInput");
+            let guessedLetter = inputField.value.toUpperCase();
+            inputField.value = "";
+
+            if (!guessedLetter || guessedLetters.includes(guessedLetter)) return;
+
+            fetch("/make-guess", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    word: word,
+                    letter: guessedLetter,
+                    maskedWord: maskedWord,
+                    guessedLetters: guessedLetters,
+                    remainingGuesses: remainingGuesses
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                maskedWord = data.maskedWord.split("").join(" ");
+                guessedLetters = data.guessedLetters;
+                remainingGuesses = data.remainingGuesses;
+                document.getElementById("message").innerText = data.message;
+                updateDisplay();
+            });
+        }
+
+        function updateDisplay() {
+            document.getElementById("maskedWord").innerText = maskedWord;
+            document.getElementById("guessedLetters").innerText = guessedLetters.length > 0 ? guessedLetters.join(", ") : "None";
+            document.getElementById("remainingGuesses").innerText = remainingGuesses;
+            document.getElementById("hangmanDrawing").innerText = hangmanStages[6 - remainingGuesses];
+
+            if (remainingGuesses <= 0) {
+                document.getElementById("message").innerText = "Game Over! The word was: " + word;
+            } else if (!maskedWord.includes("_")) {
+                document.getElementById("message").innerText = "Congratulations! You guessed the word!";
+            }
+        }
+
+        window.onload = startGame;
+    </script>
+
+</body>
+</html>

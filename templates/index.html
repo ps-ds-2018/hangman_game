@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Safety Hangman</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="{{ url_for('static', filename='header_footer_image.jpg') }}" class="header-footer-img">
+        Flight Safety Hangman
+    </header>
+
+    <div class="landing-page">
+        <div class="landing-text">Test Your Flight Safety Knowledge with Hangman!</div>
+        <a href="{{ url_for('game') }}"><button>Let's Play</button></a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <img src="{{ url_for('static', filename='header_footer_image.jpg') }}" class="header-footer-img">
+        Stay Safe. Stay Informed.
+    </footer>
+
+</body>
+</html>

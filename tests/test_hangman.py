@@ -1,33 +1,26 @@
-import random
-from tests.auto_game import auto_play_hangman
+import unittest
+from hangman.logic import process_guess
 
-def load_words(filename):
-    """Load words from a file into a list."""
-    with open(filename, "r") as file:
-        return [line.strip() for line in file]
+class TestHangman(unittest.TestCase):
+    def test_correct_guess(self):
+        word = "pilot"
+        masked_word = "_ _ _ _ _"
+        guessed_letters = []
+        remaining_guesses = 6
 
-def generate_guess_list():
-    """Generate a shuffled list of all letters to simulate random guessing."""
-    letters = list("abcdefghijklmnopqrstuvwxyz")
-    random.shuffle(letters)
-    return letters
+        new_masked, guessed, remaining, msg = process_guess(word, "p", masked_word, guessed_letters, remaining_guesses)
+        self.assertIn("p", new_masked)
+        self.assertEqual(msg, "Correct guess!")
 
-def test_all_words(words):
-    """Test Hangman on all words in the list."""
-    successes = 0
+    def test_wrong_guess(self):
+        word = "pilot"
+        masked_word = "_ _ _ _ _"
+        guessed_letters = []
+        remaining_guesses = 6
 
-    for word in words:
-        guess_list = generate_guess_list()
-        success, guessed_letters = auto_play_hangman(word, guess_list)
-
-        if success:
-            print(f"✅ Successfully guessed '{word}' with guesses: {guessed_letters}")
-            successes += 1
-        else:
-            print(f"❌ Failed to guess '{word}'. Guessed: {guessed_letters}")
-
-    print(f"\nFinished testing. Success rate: {successes}/{len(words)} words guessed correctly.")
+        new_masked, guessed, remaining, msg = process_guess(word, "z", masked_word, guessed_letters, remaining_guesses)
+        self.assertEqual(remaining, 5)
+        self.assertEqual(msg, "Wrong guess!")
 
 if __name__ == "__main__":
-    words = load_words("words.txt")
-    test_all_words(words)
+    unittest.main()

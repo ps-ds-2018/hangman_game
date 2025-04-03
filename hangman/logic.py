@@ -1,26 +1,27 @@
-import string
-from collections import Counter
+import random
 
-def get_next_guess(current_word_state: str, guessed_letters: list):
-    """
-    Determines the next letter to guess based on the current state of the word.
-    :param current_word_state: String representing the masked word (e.g., '_ _ e _ a n')
-    :param guessed_letters: List of letters already guessed
-    :return: A single character representing the next guess
-    """
-    # Convert masked word into a set of missing characters
-    missing_chars = set(current_word_state.replace(" ", "")) - set(guessed_letters)
-    
-    # If missing_chars exist, try to guess a common letter
-    if missing_chars:
-        letter_frequencies = Counter("etaoinsrhdlucmfywgpbvkxqjz")  # Common letter order
-        for letter, _ in letter_frequencies.most_common():
-            if letter not in guessed_letters:
-                return letter
-    
-    # Default to any unused letter if no pattern match is found
-    for letter in string.ascii_lowercase:
-        if letter not in guessed_letters:
-            return letter
-    
-    return None  # No more guesses possible
+def get_next_guess(current_word_state, guessed_letters):
+    # Simple strategy: choose a random letter that hasn't been guessed
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    possible_choices = [letter for letter in alphabet if letter not in guessed_letters]
+
+    return random.choice(possible_choices) if possible_choices else None
+
+def initialize_game(word):
+    return "_ " * len(word), [], 6
+
+def process_guess(word, guessed_letter, masked_word, guessed_letters, remaining_guesses):
+    if guessed_letter in guessed_letters:
+        return masked_word, guessed_letters, remaining_guesses, "Letter already guessed."
+
+    guessed_letters.append(guessed_letter)
+
+    if guessed_letter in word:
+        new_masked_word = "".join(
+            guessed_letter if word[i] == guessed_letter else masked_word[i]
+            for i in range(len(word))
+        )
+        return new_masked_word, guessed_letters, remaining_guesses, "Correct guess!"
+    else:
+        remaining_guesses -= 1
+        return masked_word, guessed_letters, remaining_guesses, "Wrong guess!"
