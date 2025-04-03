@@ -3,13 +3,13 @@
 ## Project Overview
 This project implements a **Hangman Game AI** that can play Hangman efficiently, aiming to guess words **within 6 incorrect attempts**. The word list consists of **100 flight safety-related terms**.
 
-## 🚀 Features
+## Features
 - Receives repeated inputs of the **current word state** and **letters guessed so far**.
 - Outputs a **single letter guess** per turn until the word is guessed or attempts run out.
 - Implements **manual gameplay** (`game.py`) and **automated testing** (`test_hangman.py`).
 - Supports **future API integration** for external calls.
 
-## 📂 Project Structure
+## Project Structure
 ```
 hangman_game/
 │── hangman/
@@ -56,7 +56,7 @@ python hangman/game.py
 python tests/test_hangman.py
 ```
 
-## 🔍 How It Works
+## How It Works
 1. **Word Selection**: Picks a word from `words.txt`.
 2. **Letter Guessing Strategy**:
    - Uses **letter frequency** analysis to make educated guesses.
