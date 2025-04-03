@@ -7,6 +7,7 @@ A **Flask-based Hangman game** designed to test and improve **flight safety know
 ## **Project Overview**  
 This project implements a **web-based Hangman game** that can be played manually through a **Flask-powered web interface**. The word list consists of **100 flight safety-related terms**.  
 
+
 ### **Features**  
 **Interactive Web UI** – Built with **HTML, CSS, and JavaScript**.  
 **Flask Backend** – Manages game logic and API calls.  
@@ -35,6 +36,7 @@ This project implements a **web-based Hangman game** that can be played manually
 6️. The player **wins** if they guess the word before the hangman is fully drawn.  
 7️. The player **loses** after **6 incorrect guesses**.  
 
+
 ### **Game Interface**  
 - **Displays:**  
   - **Word Length**  
@@ -58,15 +60,16 @@ This project implements a **web-based Hangman game** that can be played manually
 
 ---
 
-## **Project Structure**  
+## Project Structure  
 
 hangman_game/  
 │── hangman/                        # Core game logic  
-│   │── __init__.py  
+│   │── __init__.py                 
 │   │── game.py                     # Manual Hangman game  
 │   │── logic.py                    # AI guessing logic  
 │   │── utils.py                    # Helper functions  
 │   │── display.py                  # Hangman display function  
+│  
 │── static/                         # CSS & images  
 │   │── style.css                   # Styling for landing & game pages  
 │   │── landingpage_background.jpg  # Background image for home page  
@@ -75,13 +78,16 @@ hangman_game/
 │   │── footer-image.jpg            # Image used in footer  
 │   │── script.js                   # Frontend JavaScript file  
 │   │── style.css                   # Frontend style guide  
+│  
 │── templates/                      # HTML files for UI  
 │   │── index.html                  # Landing page  
 │   │── game.html                   # Game page  
+│  
 │── tests/                          # Testing framework  
-│   │── __init__.py  
+│   │── __init__.py         
 │   │── test_hangman.py             # Automated testing  
 │   │── auto_game.py                # Automated game logic  
+│  
 │── words.txt                       # 100 flight safety-related words  
 │── app.py                          # Flask application  
 │── requirements.txt                # Required dependencies  
