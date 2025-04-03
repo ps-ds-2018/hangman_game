@@ -4,7 +4,7 @@ A simple command-line Hangman game in Python.
 
 How to Run
 1. Clone this repository:
-git clone https://github.com/your-repo/hangman_game.git cd hangman_game
+git clone https://github.com/ps-ds-2018/hangman_game.git cd hangman_game
 
 2. Run the game:
 python main.py
