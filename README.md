@@ -65,8 +65,8 @@ This project implements a **web-based Hangman game** that can be played manually
 hangman_game/  
 │── hangman/                        # Core game logic  
 │   │── __init__.py                 
-│   │── game.py                     # Manual Hangman game  
-│   │── logic.py                    # AI guessing logic  
+│   │── game.py                     # manual gameplay  
+│   │── logic.py                    # AI guessing logic - used in manual & web app
 │   │── utils.py                    # Helper functions  
 │   │── display.py                  # Hangman display function  
 │  
@@ -83,15 +83,11 @@ hangman_game/
 │   │── index.html                  # Landing page  
 │   │── game.html                   # Game page  
 │  
-│── tests/                          # Testing framework  
-│   │── __init__.py         
-│   │── test_hangman.py             # Automated testing  
-│   │── auto_game.py                # Automated game logic  
-│  
+|
 │── words.txt                       # 100 flight safety-related words  
 │── app.py                          # Flask application  
 │── requirements.txt                # Required dependencies  
-│── README.md                       # Project documentation (this file)  
+│── README.md                       # Project documentation   
 │── .gitignore                      # Excludes unnecessary files  
 
 
