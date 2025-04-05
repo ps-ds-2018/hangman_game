@@ -83,9 +83,9 @@ hangman_game/
 │   │── index.html                  # Landing page  
 │   │── game.html                   # Game page  
 │  
-|
 │── words.txt                       # 100 flight safety-related words  
 │── app.py                          # Flask application  
+│── main.py                         # Runs manual game using a hardcoded word  
 │── requirements.txt                # Required dependencies  
 │── README.md                       # Project documentation   
 │── .gitignore                      # Excludes unnecessary files  
